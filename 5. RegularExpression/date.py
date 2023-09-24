@@ -1,5 +1,7 @@
 import re
 
+# Need to add code to input month in word form
+
 # Checks year is leap year or not
 def isLeapYear(year):
     if year % 100 == 0:
@@ -32,9 +34,15 @@ def formatDate(day, month, year):
     return f"{day}-{monthDic[str(month)]}-{year}"
 
 # RegEx for date
-datere = re.compile("(\d{1,2})([-/])(\d{1,2}|[A-Z][a-z]{3,4})([-/])(\d{4})")
+datere = re.compile('''
+                    (\d{1,2})                   # For dd
+                    ([-/])                      # For separator
+                    (\d{1,2}|[A-Z][a-z]{3,4})   # For Month
+                    ([-/])                      # For separator
+                    (\d{4})                     # For year
+                    ''', re.VERBOSE)
 
-print("Enter a date:")
+print("Enter a date (format dd-mm-yyyy):")
 date = input()
 
 try:
